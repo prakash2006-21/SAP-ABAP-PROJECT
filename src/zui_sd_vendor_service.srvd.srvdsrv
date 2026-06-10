@@ -1,0 +1,4 @@
+@EndUserText.label: 'service def for json conversion'
+define service ZUI_SD_VENDOR_SERVICE {
+  expose Z_DDF_VENDOR_ANALYTICS;
+}

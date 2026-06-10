@@ -1,0 +1,51 @@
+managed implementation in class ZBP_R_VENDOR_DATA unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_VENDOR_DATA alias ZrVendorData
+persistent table ZVENDOR_DATA
+extensible
+draft table ZVENDOR_DATA_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   VendorID;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   VendorID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZVENDOR_DATA corresponding extensible
+  {
+    VendorID = VENDOR_ID;
+    VendorName = VENDOR_NAME;
+    PoNumber = PO_NUMBER;
+    DelayDays = DELAY_DAYS;
+    StockStatus = STOCK_STATUS;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+}
